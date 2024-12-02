@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.options import Options
 
 help = """
 for single page ss:
-  echo "https://site.com" | ./ssweb.py
+  echo "http[s]://site.com" | ./ssweb.py
 for list of url ss:
   cat urls.txt | ./ssweb.py
   -- or --
@@ -36,9 +36,10 @@ def main():
 
   ss_dir = os.path.join(os.getcwd(), "screenshots")
   os.makedirs(ss_dir, exist_ok=True)
-
   for url in urls:
-
+    if not url.startswith("http"):
+      print("invalid url input, make sure url starts with http[s]")
+      exit()
     image_name = url.replace('.', '_').replace(':', '_').replace('/', '').strip() + ".png"
     driver.get(url)
     image_path = os.path.join(ss_dir, image_name)
