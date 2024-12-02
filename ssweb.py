@@ -41,9 +41,13 @@ def main():
       print("invalid url input, make sure url starts with http[s]")
       exit()
     image_name = url.replace('.', '_').replace(':', '_').replace('/', '').strip() + ".png"
-    driver.get(url)
-    image_path = os.path.join(ss_dir, image_name)
-    driver.save_screenshot(image_path)
+    try:
+      driver.get(url)
+      image_path = os.path.join(ss_dir, image_name)
+      driver.save_screenshot(image_path)
+      print("screenshot taken: " + url)
+    except:
+      print("something went wrong!")
   driver.quit()
 
 if __name__=="__main__":
