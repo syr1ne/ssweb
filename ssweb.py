@@ -16,24 +16,25 @@ def main():
   """
 
   if not stdin.isatty():
-    input_stream = stdin                                     
+    urls = stdin                                     
   else:
     try:
-      input_filename = argv[1]
-      input_stream = open(input_filename, 'r')
+      file = argv[1]
+      try:
+        urls = open(file, 'r')
+      except FileNotFoundError:
+        print("file doesn't exist!")
+        exit()
+
     except IndexError:
       print(help)
       exit()
 
-  for line in input_stream:
-    print(line)
-
-  # with open(args.file, 'r') as file:
-  #   for url in file:
-  #     print(url)
-  #     driver.get($url)
-  #     driver.save_screenshot("test.png")
-  #   driver.quit()
+  for url in urls:
+    imageName = url.replace('.', '_').replace(':', '_').replace('/', '').strip() + ".png"
+    driver.get(url)
+    driver.save_screenshot(imageName)
+  driver.quit()
 
 if __name__=="__main__":
   main()
