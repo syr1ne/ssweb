@@ -10,3 +10,5 @@ for list of url ss:
   -- or --
   ./ssweb.py {file path}
 ```
+### todo
+- add multithreading
