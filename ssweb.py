@@ -47,6 +47,8 @@ def main():
       driver.save_screenshot(image_path)
       print("screenshot taken: " + url)
     except:
+      if KeyboardInterrupt:
+          exit()
       print("something went wrong!")
   driver.quit()
 
