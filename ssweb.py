@@ -37,6 +37,7 @@ def main():
   ss_dir = os.path.join(os.getcwd(), "screenshots")
   os.makedirs(ss_dir, exist_ok=True)
   for url in urls:
+    # needs to add a proper url check here.
     if not url.startswith("http"):
       print("invalid url input, make sure url starts with http[s]")
       exit()
